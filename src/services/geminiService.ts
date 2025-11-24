@@ -1,3 +1,4 @@
+
 import { GoogleGenAI } from "@google/genai";
 import type { LessonParams } from '../types';
 import { SYSTEM_INSTRUCTION } from '../constants';
@@ -30,9 +31,12 @@ export const generateLessonPlan = async (params: LessonParams): Promise<string> 
     - Kelas: ${params.grade}
     ${params.integration ? `- Integrasi Mapel Lain: ${params.integration}` : ''}
     
-    Instruksi Khusus:
-    1. Pastikan mengikuti struktur TAHAP 1 (Modul Ajar Deep Learning) dan TAHAP 2 (Materi & LKPD).
-    2. Pada bagian INFORMASI UMUM, masukkan data identitas di atas.
+    Instruksi Khusus & Wajib:
+    1. GANTI TOTAL istilah "Profil Pelajar Pancasila" dengan "Dimensi Profil Lulusan".
+    2. PENTING: Ikuti struktur PENGALAMAN PEMBELAJARAN di System Instruction. 
+       - Pastikan Apersepsi dilabeli sebagai (Berkesadaran).
+       - Motivasi dilabeli sebagai (Menggembirakan).
+       - Kegiatan Inti dilabeli sebagai (Bermakna).
     3. Pada bagian "Mengaplikasi (To Apply)", berikan contoh konkret aktivitas siswa yang sesuai dengan durasi ${params.duration || 'standar'}.
     4. Buatkan rubrik penilaian dalam format tabel.
   `;
@@ -47,7 +51,14 @@ export const generateLessonPlan = async (params: LessonParams): Promise<string> 
       }
     });
 
-    return response.text || "Maaf, gagal menghasilkan konten. Silakan coba lagi.";
+    let generatedText = response.text || "Maaf, gagal menghasilkan konten. Silakan coba lagi.";
+
+    // FINAL PROTECTION: Force replace any remaining "Profil Pelajar Pancasila" text
+    // This runs on the client side before display, ensuring the term never appears.
+    generatedText = generatedText.replace(/Profil Pelajar Pancasila/gi, "Dimensi Profil Lulusan");
+    generatedText = generatedText.replace(/Pelajar Pancasila/gi, "Profil Lulusan"); // Extra safety
+
+    return generatedText;
   } catch (error: any) {
     console.error("Gemini API Error:", error);
     throw new Error(error.message || "Terjadi kesalahan saat menghubungi layanan AI.");
