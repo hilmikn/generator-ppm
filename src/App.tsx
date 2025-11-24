@@ -18,7 +18,8 @@ import {
   User,
   Building,
   Clock,
-  FileCheck
+  FileCheck,
+  Phone
 } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -120,8 +121,8 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="hidden md:flex items-center gap-4 text-sm text-slate-500">
-               <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-blue-500"/> Modul Ajar</span>
-               <span className="flex items-center gap-1"><FileText className="w-3 h-3 text-green-500"/> Materi & LKPD</span>
+              <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-blue-500"/> Modul Ajar</span>
+              <span className="flex items-center gap-1"><FileText className="w-3 h-3 text-green-500"/> Materi & LKPD</span>
             </div>
           </div>
         </header>
@@ -330,14 +331,14 @@ const App: React.FC = () => {
 
             {status === LoadingState.LOADING && (
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 min-h-[400px] flex flex-col items-center justify-center">
-                 <div className="w-16 h-16 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-6"></div>
-                 <h3 className="text-xl font-bold text-slate-800">Sedang Berpikir...</h3>
-                 <p className="text-slate-500 mt-2 text-center max-w-md animate-pulse">
-                   AI sedang menyusun:<br/>
-                   1. Informasi Umum Modul<br/>
-                   2. Skenario Deep Learning (Understand, Apply, Reflect)<br/>
-                   3. Outline Materi & Rancangan LKPD
-                 </p>
+                <div className="w-16 h-16 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-6"></div>
+                <h3 className="text-xl font-bold text-slate-800">Sedang Berpikir...</h3>
+                <p className="text-slate-500 mt-2 text-center max-w-md animate-pulse">
+                  AI sedang menyusun:<br/>
+                  1. Informasi Umum Modul<br/>
+                  2. Skenario Deep Learning (Understand, Apply, Reflect)<br/>
+                  3. Outline Materi & Rancangan LKPD
+                </p>
               </div>
             )}
 
@@ -434,8 +435,12 @@ const App: React.FC = () => {
 
         {/* Footer */}
         <footer className="bg-white border-t border-slate-200 py-6 mt-auto print:hidden">
-          <div className="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
+          <div className="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm flex flex-col items-center gap-2">
             <p>&copy; {new Date().getFullYear()} Generator PPM & LKPD Deep Learning.</p>
+            <a href="https://wa.me/6282228227414" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium bg-blue-50 px-4 py-2 rounded-full mt-2">
+               <Phone className="w-4 h-4" />
+               Support Admin: 0822-2822-7414
+            </a>
           </div>
         </footer>
       </div>

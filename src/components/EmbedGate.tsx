@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ShieldAlert, Lock } from 'lucide-react';
+import { ShieldAlert, Lock, Phone } from 'lucide-react';
 
 interface EmbedGateProps {
   children: React.ReactNode;
@@ -52,6 +52,14 @@ const EmbedGate: React.FC<EmbedGateProps> = ({ children }) => {
             <p className="text-slate-500 text-sm">
               Silakan login ke website member area Anda dan buka aplikasi dari halaman yang tersedia.
             </p>
+
+            <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 flex flex-col items-center gap-2 mt-4">
+                <p className="text-sm text-slate-600 font-medium">Mengalami kendala?</p>
+                <a href="https://wa.me/6282228227414" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                    <Phone className="w-4 h-4" />
+                    Hubungi Admin: 0822-2822-7414
+                </a>
+            </div>
 
             <div className="pt-4 border-t border-slate-100 mt-4">
               <p className="text-xs text-slate-400">
